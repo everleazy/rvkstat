@@ -97,8 +97,9 @@ vkGetAdStatistics <- function(account_id = NULL,
                                 join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
 				conversion_count    = if(is.null( dataRaw$response[[i]]$stats[[dt]]$conversion_count ) == TRUE ){
-  as.integer( 0 )
-} else {dataRaw$response[[i]]$stats[[dt]]$conversion_count},
+                                                      as.integer( 0 )
+                                                      } else {
+					              dataRaw$response[[i]]$stats[[dt]]$conversion_count},
 				
 				
 				stringsAsFactors = F))}
