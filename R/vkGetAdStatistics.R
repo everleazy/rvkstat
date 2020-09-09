@@ -96,8 +96,7 @@ vkGetAdStatistics <- function(account_id = NULL,
                                 video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
                                 lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
 				join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
-				
-				conversion_count    = as.integer(dataRaw$response[[i]]$stats[[dt]]$conversion_count) +0,
+				conversion_count    = dataRaw$response[[i]]$stats[[dt]]$conversion_count,
                                 stringsAsFactors = F))}
     }
    if(period == "month"){
