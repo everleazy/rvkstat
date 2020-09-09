@@ -83,8 +83,8 @@ vkGetAdStatistics <- function(account_id = NULL,
     for(dt in 1:length(dataRaw$response[[i]]$stats)){
     if(length(dataRaw$response[[i]]$stats)==0) next
     result  <- rbind(result,
-                     data.frame(id                  = dataRaw$response[[i]]$id,
-                                type                = dataRaw$response[[i]]$type,
+                     data.frame(id                  = ifelse(is.null(dataRaw$response[[i]]$id), NA,dataRaw$response[[i]]$id),
+                                type                = ifelse(is.null(dataRaw$response[[i]]$type), NA,dataRaw$response[[i]]$type),
                                 day                 = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$day), NA,dataRaw$response[[i]]$stats[[dt]]$day),
                                 spent               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$spent), NA,dataRaw$response[[i]]$stats[[dt]]$spent),
                                 impressions         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$impressions), NA,dataRaw$response[[i]]$stats[[dt]]$impressions),
@@ -94,19 +94,16 @@ vkGetAdStatistics <- function(account_id = NULL,
                                 video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
                                 video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
                                 video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
-                                join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
+                                conversion_count           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
 				lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				conversion_count    = 0 + is.integer(dataRaw$response[[i]]$stats[[dt]]$conversion_count),
-				                                    
-				
-				stringsAsFactors = F))}
+                                stringsAsFactors = F))}
     }
    if(period == "month"){
    for(dt in 1:length(dataRaw$response[[i]]$stats)){
      if(length(dataRaw$response[[i]]$stats)==0) next
      result  <- rbind(result,
-                      data.frame(id                  = ifelse(is.null(dataRaw$response[[i]]$id),                NA,dataRaw$response[[i]]$id),
-                                 type                = ifelse(is.null(dataRaw$response[[i]]$type),              NA,dataRaw$response[[i]]$type),
+                      data.frame(id                  = ifelse(is.null(dataRaw$response[[i]]$id), NA,dataRaw$response[[i]]$id),
+                                 type                = ifelse(is.null(dataRaw$response[[i]]$type), NA,dataRaw$response[[i]]$type),
                                  month               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$month), NA,dataRaw$response[[i]]$stats[[dt]]$month),
                                  spent               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$spent), NA,dataRaw$response[[i]]$stats[[dt]]$spent),
                                  impressions         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$impressions), NA,dataRaw$response[[i]]$stats[[dt]]$impressions),
@@ -118,7 +115,6 @@ vkGetAdStatistics <- function(account_id = NULL,
                                  video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
                                  join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				 lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				 conversion_count    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
                                  stringsAsFactors = F))}
    }
    if(period == "overall"){
@@ -139,7 +135,6 @@ vkGetAdStatistics <- function(account_id = NULL,
                                     video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
                                     join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				    lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				    conversion_count    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
                                     stringsAsFactors = F))}
      }
     }
@@ -152,7 +147,6 @@ vkGetAdStatistics <- function(account_id = NULL,
     result$impressions <- as.integer(result$impressions)
     result$reach <- as.integer(result$reach)
     result$join_rate <- as.integer(result$join_rate)
-    result$conversion_count <- as.integer(result$conversion_count)
   }
   return(result) 
 }
