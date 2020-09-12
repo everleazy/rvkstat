@@ -1,6 +1,11 @@
-api_version_checker <- function(v){
-  current_version <- "5.122"
+ api_version_checker <- function(v){
+ library(rvest)
   
-  if(is.null(v)) return(current_version)
-  if(as.numeric(v) < 4) return(current_version)
-  return(v)}
+  url <- "https://vk.com/dev/versions"
+  data <- read_html (url)
+  apiV <- html_nodes(data, css = ".dev_version_num.fl_l")
+  apiV <- html_text(apiV[1])
+  ifelse(is.null(apiV), "5.122",apiV)
+  
+  
+}
