@@ -1,3 +1,4 @@
+## link api doc https://vk.com/dev/ads.getStatistics
 vkGetAdStatistics <- function(account_id = NULL,
                               ids_type = "office",
                               ids = NULL,
@@ -90,13 +91,32 @@ vkGetAdStatistics <- function(account_id = NULL,
                                 impressions         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$impressions), NA,dataRaw$response[[i]]$stats[[dt]]$impressions),
                                 clicks              = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$clicks), NA,dataRaw$response[[i]]$stats[[dt]]$clicks),
                                 reach               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$reach), NA,dataRaw$response[[i]]$stats[[dt]]$reach),
-                                video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),
-                                video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
-                                video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
-                                video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
+                                #video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),             # not support
+                                #video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),   # not support
+                                #video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),   # not support
+                                #video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), # not support
                                 join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				conversion_count    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				
+				
+				### new metric / api version 5.122 / 12.09.20 
+				uniq_views_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$uniq_views_count ), NA,dataRaw$response[[i]]$stats[[dt]]$uniq_views_count),
+				effective_cost_per_click        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click),
+				conversion_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				conversion_cr                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_cr ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_cr),
+				conversion_roas                 = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_roas ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_roas),
+				conversion_sum                  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_sum ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_sum),
+				effective_cost_per_mille        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille),
+				effective_cpf                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cpf ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cpf),
+				effective_cost_per_message      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message),
+				message_sends                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$message_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$message_sends),
+				video_plays_unique_started      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started),
+				video_plays_unique_3_seconds    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds),
+				video_plays_unique_25_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents),
+				video_plays_unique_50_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents),
+				video_plays_unique_75_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents),
+				video_plays_unique_100_percents = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents),
+				
                                 stringsAsFactors = F))}
     }
    if(period == "month"){
@@ -110,13 +130,31 @@ vkGetAdStatistics <- function(account_id = NULL,
                                  impressions         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$impressions), NA,dataRaw$response[[i]]$stats[[dt]]$impressions),
                                  clicks              = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$clicks), NA,dataRaw$response[[i]]$stats[[dt]]$clicks),
                                  reach               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$reach), NA,dataRaw$response[[i]]$stats[[dt]]$reach),
-                                 video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),
-                                 video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
-                                 video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
-                                 video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
+                                 #video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),
+                                 #video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
+                                 #video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
+                                 #video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
                                  join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				 lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				 conversion_count    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				 
+				 
+				### new metric / api version 5.122 / 12.09.20 
+				uniq_views_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$uniq_views_count ), NA,dataRaw$response[[i]]$stats[[dt]]$uniq_views_count),
+				effective_cost_per_click        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click),
+				conversion_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				conversion_cr                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_cr ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_cr),
+				conversion_roas                 = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_roas ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_roas),
+				conversion_sum                  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_sum ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_sum),
+				effective_cost_per_mille        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille),
+				effective_cpf                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cpf ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cpf),
+				effective_cost_per_message      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message),
+				message_sends                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$message_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$message_sends),
+				video_plays_unique_started      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started),
+				video_plays_unique_3_seconds    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds),
+				video_plays_unique_25_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents),
+				video_plays_unique_50_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents),
+				video_plays_unique_75_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents),
+				video_plays_unique_100_percents = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents),
                                  stringsAsFactors = F))}
    }
    if(period == "overall"){
@@ -131,13 +169,32 @@ vkGetAdStatistics <- function(account_id = NULL,
                                     impressions         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$impressions), NA,dataRaw$response[[i]]$stats[[dt]]$impressions),
                                     clicks              = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$clicks), NA,dataRaw$response[[i]]$stats[[dt]]$clicks),
                                     reach               = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$reach), NA,dataRaw$response[[i]]$stats[[dt]]$reach),
-                                    video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),
-                                    video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
-                                    video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
-                                    video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
+                                    #video_views         = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views), NA,dataRaw$response[[i]]$stats[[dt]]$video_views),
+                                    #video_views_half    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_half), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_half),
+                                    #video_views_full    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_views_full), NA,dataRaw$response[[i]]$stats[[dt]]$video_views_full),
+                                    #video_clicks_site   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_clicks_site), NA,dataRaw$response[[i]]$stats[[dt]]$video_clicks_site),
                                     join_rate           = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$join_rate ), NA,dataRaw$response[[i]]$stats[[dt]]$join_rate),
 				    lead_form_sends     = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$lead_form_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$lead_form_sends),
-				    conversion_count    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				    
+				    
+				    ### new metric / api version 5.122 / 12.09.20 
+				    uniq_views_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$uniq_views_count ), NA,dataRaw$response[[i]]$stats[[dt]]$uniq_views_count),
+				    effective_cost_per_click        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_click),
+				    conversion_count                = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_count ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_count),
+				    conversion_cr                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_cr ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_cr),
+				    conversion_roas                 = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_roas ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_roas),
+				    conversion_sum                  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$conversion_sum ), NA,dataRaw$response[[i]]$stats[[dt]]$conversion_sum),
+			    	    effective_cost_per_mille        = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_mille),
+				    effective_cpf                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cpf ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cpf),
+				    effective_cost_per_message      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message ), NA,dataRaw$response[[i]]$stats[[dt]]$effective_cost_per_message),
+				    message_sends                   = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$message_sends ), NA,dataRaw$response[[i]]$stats[[dt]]$message_sends),
+				    video_plays_unique_started      = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_started),
+				    video_plays_unique_3_seconds    = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_3_seconds),
+				    video_plays_unique_25_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_25_percents),
+				    video_plays_unique_50_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_50_percents),
+				    video_plays_unique_75_percents  = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_75_percents),
+				    video_plays_unique_100_percents = ifelse(is.null(dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents ), NA,dataRaw$response[[i]]$stats[[dt]]$video_plays_unique_100_percents),
+				    
                                     stringsAsFactors = F))}
      }
     }
@@ -153,4 +210,4 @@ vkGetAdStatistics <- function(account_id = NULL,
     result$conversion_count <- as.integer(result$conversion_count)  
   }
   return(result) 
-}
+  }
